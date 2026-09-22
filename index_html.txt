@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERVICE JRPMT GROUPE | Grands Immeubles, BTP & Administration au Mali</title>
+    <style>
+        /* Charte Graphique Officielle SERVICE JRPMT */
+        :root {
+            --primary-blue: #0b2545;      /* Bleu Nuit Institutionnel */
+            --accent-gold: #d4af37;       /* Jaune Or Engin BTP */
+            --steel-grey: #2c3e50;        /* Gris Acier / Béton */
+            --light-bg: #f4f6f9;          /* Fond Clair */
+            --white: #ffffff;
+            --success-green: #27ae60;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--steel-grey);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+        }
+
+        /* Navigation Sticky */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .logo-sub {
+            font-size: 0.8rem;
+            color: var(--white);
+            display: block;
+            font-weight: 300;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        .btn-header {
+            background-color: var(--accent-gold);
+            color: var(--primary-blue) !important;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Hero / Bannière d'Accueil */
+        .hero {
+            background: linear-gradient(rgba(11, 37, 69, 0.85), rgba(11, 37, 69, 0.85)), url('images/chantier-bamako.jpg') center/cover;
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* Structuration des Conteneurs */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .title-underline {
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-gold);
+            margin: auto;
+        }
+
+        /* Grilles & Cartes */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-top: 0;
+        }
+
+        .equipment-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .equipment-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .equipment-list li::before {
+            content: "✔ ";
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* Boîtes d'Administration & Formulaires */
+        .admin-box {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--primary-blue);
+        }
+
+        .iban-box {
+            background-color: #eef4f8;
+            border: 2px dashed var(--primary-blue);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-top: 1.5rem;
+        }
+
+        .iban-details {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            border: 1px solid #ccc;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 1rem;
+            color: var(--primary-blue);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 0.4rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            margin-top: 0;
+        }
+
+        button {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-blue);
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EN-TÊTE / NAVIGATION -->
+    <header>
+        <div>
+            <span class="logo-text">SERVICE JRPMT</span>
+            <span class="logo-sub">Société Malienne de BTP & Construction d'Immeubles</span>
+        </div>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#projets">Grands Immeubles</a>
+            <a href="#materiel">Parc Engins</a>
+            <a href="#administration">Administration</a>
+            <a href="#devis">Devis & Paiement</a>
+            <a href="#email-pro" class="btn-header">Email Pro</a>
+        </nav>
+    </header>
+
+    <!-- SECTION 1 : ACCUEIL -->
+    <section id="accueil" class="hero">
+        <h1>SERVICE JRPMT : La Grande Entreprise de BTP du Mali</h1>
+        <p>Construction d'immeubles de grande hauteur, gestion administrative intégrée et puissance logistique pour réaliser les plus grands projets immobiliers et d'infrastructures en Afrique de l'Ouest.</p>
+    </section>
+
+    <!-- SECTION 2 : LES GRANDS IMMEUBLES ET BÂTIMENTS -->
+    <section id="projets" class="container">
+        <div class="section-header">
+            <h2>Nos Types de Constructions & Immeubles</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Tours Résidentielles HAUT DE GAMME</h3>
+                    <p>Immeubles de R+5 à R+25 comprenant appartements de grand standing, ascenseurs à grande vitesse et parkings souterrains sécurisés.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3>Centres d'Affaires & Sièges Administratifs</h3>
+                    <p>Bâtiments commerciaux intelligents pour institutions, banques et ministères avec façades vitrées et gestion énergétique moderne.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3>Infrastructures & Génie Civil</h3>
+                    <p>Construction d'ouvrages publics, ponts, axes routiers majeurs et aménagement de plateformes industrielles au Mali.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 : LE PARC MATÉRIEL ET ÉQUIPEMENTS LOURDS -->
+    <section id="materiel" style="background-color: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Notre Parc Matériel & Équipements Lourds en Propre</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Engins de Terrassement & Pistes</h3>
+                        <ul class="equipment-list">
+                            <li>10 Bulldozers Cat D8T pour le nivellement massif</li>
+                            <li>15 Excavatrices lourdes sur chenilles et pneus</li>
+                            <li>8 Chargeuses grand volume pour manutention</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Transport & Camions Lourds</h3>
+                        <ul class="equipment-list">
+                            <li>25 Camions-bennes 32 Tonnes pour agrégats</li>
+                            <li>Tracteurs & Remorques surbaissées (Porte-engins)</li>
+                            <li>Flotte de véhicules légers et utilitaires de chantier</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Levage & Centrale à Béton</h3>
+                        <ul class="equipment-list">
+                            <li>6 Grues à tour automotrices pour grands immeubles</li>
+                            <li>12 Camions malaxeurs (Toupies à béton)</li>
+                            <li>2 Centrales à béton fixes et pompes mobiles 42m</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 : ADMINISTRATION, DIRECTION ET EMPLOYÉS -->
+    <section id="administration" class="container">
+        <div class="section-header">
+            <h2>Administration, Direction & Organisation</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Direction Générale & Gérance</h3>
+                    <p>Supervision globale des investissements, pilotage des chantiers et relations stratégiques avec les associés et partenaires.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3>Secrétariat & Communication</h3>
+                    <p>Gestion centrale des courriers officiels, appels d'offres publics, accueil des clients et traitement des permis de construire.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3>Analyse de Données & Finances</h3>
+                    <p>Suivi budgétaire en temps réel, analyse des coûts des matériaux, contrôle de la paie des employés et comptabilité globale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5 : HISTOIRE & LIEU DE L'ENTREPRISE -->
+    <section style="background-color: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Notre Histoire & Implantation au Mali</h2>
+                <div class="title-underline"></div>
+            </div>
+            <p style="text-align: center; max-width: 900px; margin: auto;">
+                Créée avec la vision de moderniser le paysage immobilier malien, la société <strong>SERVICE JRPMT GROUPE</strong> s'impose grâce à l'acquisition en propre d'équipements de pointe, un pôle financier rigoureux et une équipe qualifiée d'ingénieurs et gestionnaires.
+            </p>
+            <br>
+            <div style="text-align: center; font-weight: bold; color: var(--primary-blue);">
+                <p>📍 Siège Social : Quartier ACI 2000 / Fleuve, Bamako - République du Mali</p>
+                <p>📞 Téléphone Administration : +223 20 00 00 00 | ✉ Email : contact@servicejrpmt.ml</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6 : DEVIS & PAIEMENT DE CONTRAT (Tranches 50% / 50%) -->
+    <section id="devis" class="container">
+        <div class="grid-2">
+            
+            <!-- FORMULAIRE DE DEVIS -->
+            <div class="admin-box">
+                <h2>📋 Demande de Devis d'Immeuble</h2>
+                <p>Recevez une proposition financière et technique clé en main.</p>
+
+                <form id="devisForm" onsubmit="soumettreDevis(event)">
+                    <label for="clientType">Vous êtes :</label>
+                    <select id="clientType" required>
+                        <option value="">-- Sélectionnez votre statut --</option>
+                        <option value="entreprise">Entreprise / Société Partenaire</option>
+                        <option value="particulier">Investisseur Privé / Particulier</option>
+                        <option value="etat">État / Institution Publique</option>
+                    </select>
+
+                    <label for="clientName">Nom complet ou Raison Sociale :</label>
+                    <input type="text" id="clientName" placeholder="Ex: SOGEFIM SA" required>
+
+                    <label for="clientPhone">Téléphone / WhatsApp :</label>
+                    <input type="tel" id="clientPhone" placeholder="+223 00 00 00 00" required>
+
+                    <label for="buildingType">Type d'immeuble à construire :</label>
+                    <select id="buildingType" required>
+                        <option value="r+3">Immeuble R+3</option>
+                        <option value="r+5">Immeuble R+5 à R+8</option>
+                        <option value="r+10">Tour / Gratte-ciel (R+10+)</option>
+                        <option value="commercial">Complexe Commercial / Administratif</option>
+                    </select>
+
+                    <label for="surface">Surface estimée du terrain (m²) :</label>
+                    <input type="number" id="surface" placeholder="Ex: 600" required>
+
+                    <label for="location">Ville / Quartier au Mali :</label>
+                    <input type="text" id="location" placeholder="Ex: Bamako - ACI 2000" required>
+
+                    <label for="budget">Budget global envisagé (FCFA) :</label>
+                    <input type="text" id="budget" placeholder="Ex: 300 000 000 FCFA">
+
+                    <button type="submit">Soumettre la demande de devis</button>
+                </form>
+                <div id="devisSuccess" class="alert-success">✅ Votre demande a bien été enregistrée. Notre bureau d'études vous recontactera sous 48h.</div>
+            </div>
+
+            <!-- FORMULAIRE DE PAIEMENT / ACOMPTE (Tranche 50%) -->
+            <div class="admin-box">
+                <h2>💳 Règlement d'Acompte & Contrat</h2>
+                <p>Règlement des tranches de contrat (50% au démarrage / 50% à la livraison).</p>
+
+                <form id="paiementForm" onsubmit="validerPaiement(event)">
+                    <label for="payerName">Nom de l'entreprise ou du client payeur :</label>
+                    <input type="text" id="payerName" placeholder="Ex: Groupe Mali Immo" required>
+
+                    <label for="contractRef">Numéro du Contrat / Projet :</label>
+                    <input type="text" id="contractRef" placeholder="Ex: CT-2026-JRPMT-01" required>
+
+                    <label for="tranche">Type de tranche de paiement :</label>
+                    <select id="tranche" onchange="calculerMontant()" required>
+                        <option value="">-- Sélectionnez la tranche --</option>
+                        <option value="acompte">Acompte de démarrage (50% de la somme totale)</option>
+                        <option value="solde">Solde final de fin de chantier (50% restant)</option>
+                        <option value="autre">Achat matériel / Facture spécifique</option>
+                    </select>
+
+                    <label for="totalAmount">Montant total du projet (FCFA) :</label>
+                    <input type="number" id="totalAmount" placeholder="Ex: 150000000" oninput="calculerMontant()" required>
+
+                    <label for="payAmount">Montant à verser immédiatement :</label>
+                    <input type="text" id="payAmount" readonly style="background-color: #e9ecef; font-weight: bold; color: var(--primary-blue);">
+
+                    <label>Mode de paiement :</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="paymentMethod" value="virement" checked> Virement Bancaire</label>
+                        <label><input type="radio" name="paymentMethod" value="cheque"> Chèque Certifié</label>
+                        <label><input type="radio" name="paymentMethod" value="ordre"> Ordre de Virement</label>
+                    </div>
+
+                    <button type="submit">Générer le justificatif de règlement</button>
+                </form>
+                <div id="paiementSuccess" class="alert-success"></div>
+            </div>
+
+        </div>
+
+        <!-- COORDONNÉES BANCAIRES OFFICIELLES (IBAN) -->
+        <div class="admin-box" style="margin-top: 3rem;">
+            <h2>🏦 Coordonnées Bancaires Officielles de SERVICE JRPMT</h2>
+            <p>Utilisez ces informations sécurisées pour effectuer vos virements bancaires, règlements de chèques ou versements d'associés :</p>
+
+            <div class="iban-box">
+                <p><strong>Titulaire du compte :</strong> SERVICE JRPMT GROUPE SARL</p>
+                <p><strong>Établissement bancaire :</strong> Banque Internationale pour le Mali (BIM / BDM SA)</p>
+                
+                <p>IBAN / Numéro de compte bancaire officiel :</p>
+                <div class="iban-details">ML02 0010 1234 5678 9012 3456 78</div>
+
+                <p>Code SWIFT / BIC :</p>
+                <div class="iban-details">BIMAMLM1XXX</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7 : GÉNÉRATEUR D'EMAIL PROFESSIONNEL -->
+    <section id="email-pro" class="container">
+        <div class="admin-box">
+            <h2>📧 Portail Interne : Attribution de Compte Email Pro</h2>
+            <p>Tous les dirigeants, gérants et secrétaires doivent détenir une adresse sous le domaine officiel <strong>@servicejrpmt.ml</strong>.</p>
+            
+            <form id="emailFormJRPMT">
+                <label for="empName">Nom et Prénom de l'employé :</label>
+                <input type="text" id="empName" placeholder="Ex: Moussa Diarra" required>
+
+                <label for="empPost">Département d'affectation :</label>
+                <select id="empPost">
+                    <option value="direction">Direction Générale & Gérance</option>
+                    <option value="jrpmt">Pôle SERVICE JRPMT (Gestion & Règlements)</option>
+                    <option value="secretariat">Secrétariat & Communication</option>
+                    <option value="materiel">Gestion du Parc Matériel & Logistique</option>
+                </select>
+
+                <label for="emailResult">Adresse Email Pro Proposée :</label>
+                <input type="text" id="emailResult" placeholder="m.diarra@servicejrpmt.ml" readonly style="background-color: #e9ecef; font-weight: bold; color: var(--primary-blue);">
+
+                <button type="button" onclick="validerCompte()">Activer le compte professionnel</button>
+            </form>
+            <div id="statusMessage" style="margin-top: 1rem; font-weight: bold; color: var(--success-green);"></div>
+        </div>
+    </section>
+
+    <!-- PIED DE PAGE -->
+    <footer>
+        <p>&copy; 2026 SERVICE JRPMT GROUPE - Tous droits réservés | Bamako, République du Mali</p>
+    </footer>
+
+    <!-- LOGIQUE JAVASCRIPT INTEGRÉE -->
+    <script>
+        // 1. Calculateur automatique de tranche 50%
+        function calculerMontant() {
+            let total = parseFloat(document.getElementById('totalAmount').value);
+            let tranche = document.getElementById('tranche').value;
+            let resultInput = document.getElementById('payAmount');
+
+            if (!isNaN(total) && total > 0) {
+                if (tranche === 'acompte' || tranche === 'solde') {
+                    let verse = total * 0.50;
+                    resultInput.value = verse.toLocaleString('fr-FR') + ' FCFA (Tranche de 50%)';
+                } else if (tranche === 'autre') {
+                    resultInput.value = total.toLocaleString('fr-FR') + ' FCFA (100%)';
+                } else {
+                    resultInput.value = '';
+                }
+            } else {
+                resultInput.value = '';
+            }
+        }
+
+        // 2. Soumission du devis
+        function soumettreDevis(event) {
+            event.preventDefault();
+            document.getElementById('devisSuccess').style.display = 'block';
+        }
+
+        // 3. Validation du règlement
+        function validerPaiement(event) {
+            event.preventDefault();
+            let payer = document.getElementById('payerName').value;
+            let ref = document.getElementById('contractRef').value;
+            let montant = document.getElementById('payAmount').value;
+
+            let successBox = document.getElementById('paiementSuccess');
+            successBox.innerHTML = '✅ Reçu enregistré pour <strong>' + payer + '</strong> (Réf Contrat : ' + ref + '). Montant validé : <strong>' + montant + '</strong>. L\'information a été transmise à l\'administration SERVICE JRPMT.';
+            successBox.style.display = 'block';
+        }
+
+        // 4. Génération dynamique de l'email pro
+        document.getElementById('empName').addEventListener('input', function() {
+            let input = this.value.trim().toLowerCase();
+            let parts = input.split(' ');
+            if (parts.length >= 2) {
+                let initial = parts[0].charAt(0);
+                let nom = parts.slice(1).join('');
+                document.getElementById('emailResult').value = initial + '.' + nom + '@servicejrpmt.ml';
+            } else if (parts.length === 1 && parts[0] !== '') {
+                document.getElementById('emailResult').value = parts[0] + '@servicejrpmt.ml';
+            } else {
+                document.getElementById('emailResult').value = '';
+            }
+        });
+
+        function validerCompte() {
+            let mail = document.getElementById('emailResult').value;
+            if (mail !== '') {
+                document.getElementById('statusMessage').innerHTML = '✅ L\'adresse officielle <strong>' + mail + '</strong> est validée et réservée sur le serveur d\'entreprise.';
+            }
+        }
+    </script>
+</body>
+</html>
